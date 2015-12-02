@@ -6,28 +6,15 @@ import javax.persistence.Persistence;
 
 import br.com.k19.modelo.Pessoa;
 
-public class TestePersist {
+public class TesteFind {
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("K21_entity_manager_pu");
 		EntityManager manager = factory.createEntityManager();
 		
-		// ABRINDO A TRANSAÇÃO
-		manager.getTransaction().begin();
-		
-		// OBJETO NO ESTADO NEW
-		Pessoa p = new Pessoa();
-		p.setNome("Rafael Consentino");
-		Pessoa p2 = new Pessoa();
-		p2.setNome("Joaozinho");
-		
 		// OBJETO NO ESTADO MANAGED
-		manager.persist(p);
-		manager.persist(p2);
-		
-		// SINCRONIZANDO E CONFIRMANDO A TRANSACAO
-		manager.getTransaction().commit();
-		
-		System.out.println("Pessoa id: " + p.getId());
+		Pessoa p = manager.find(Pessoa.class, 1L);
+		System.out.println("Id: " + p.getId());
+		System.out.println("Nome: " + p.getNome());
 		
 		manager.close();
 		factory.close();
