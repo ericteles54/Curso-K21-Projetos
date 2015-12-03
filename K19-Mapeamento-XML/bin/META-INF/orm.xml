@@ -25,4 +25,74 @@
 			</basic>
 		</attributes>
 	</entity>
+	
+	<entity class="br.com.k19.modelo.Estado">
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>
+			
+			<one-to-one name="governador" />
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.Governador">
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.Funcionario">
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>			
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.Departamento">
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>
+			
+			<one-to-many name="funcionarios" />
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.Candidato">
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>
+			
+			<basic name="nascimento">
+				<temporal>DATE</temporal>
+			</basic>
+			
+			<embedded name="endereco" />
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.Pessoa">
+		<inheritance strategy="SINGLE_TABLE"/>
+		<attributes>
+			<id name="id">
+				<generated-value/>
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="br.com.k19.modelo.PessoaJuridica">
+		<attributes>
+			<basic name="cnpj" optional="false"></basic>
+		</attributes>
+	</entity>
+	<entity class="br.com.k19.modelo.PessoaFisica">
+		<attributes>
+			<basic name="cpf" optional="false"></basic>
+		</attributes>
+	</entity>
 </entity-mappings>
